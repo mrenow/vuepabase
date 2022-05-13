@@ -8,7 +8,6 @@ import NewBlog from './components/NewBlog.vue'
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
   <div class=content-area>
   <!--HelloWorld msg="Hello Vue 3 + Vite" /-->
   <Auth/>

@@ -14,17 +14,24 @@ body{
     height: 100%;
 }
 
+/* Main Region in which content is situated, fixed width*/
+.content-area{
+    display:block;
+    margin: auto;
+    max-width: 1200px;
+    height: 100vh
+}
+
 .content-row{
     display: flex;
     flex-direction: row;
 }
 .content-column{
+    padding: 5px;
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto;
 }
 .content-block{
-    position: relative;
     flex: 2 1 auto;
     padding: 10px;
     margin: 10px 10px 0px 10px;
@@ -41,11 +48,7 @@ body{
     height: 100%;
     box-shadow: 2px 2px 5px black;
 }
-/* Main Region in which content is situated, fixed width*/
-.content-area{
-    margin: auto;
-    width: 800px;
-}
+
 .main-text{
     font-size: 20px;
 }  
@@ -70,9 +73,7 @@ h1{
     text-align: center;
 }
 .flex-child-fill{
-    box-sizing: content-box;
     width: 100%;
-    flex: 1;
 }
 .img-decal{
     position: absolute;
@@ -101,6 +102,5 @@ h1{
 }
 
 textarea{
-
-    box-sizing: content-box;
+    box-sizing: border-box;
 }

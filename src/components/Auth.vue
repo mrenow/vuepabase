@@ -24,7 +24,9 @@ const handleLogin = async() => {
 </script>
 
 <template>
-    <p>hello</p>
+    <div>
+        <p>hello</p>
+    </div>
     <form @submit.prevent="handleLogin">
         <!-- v-model does two way binding between the email attribute tand the input value. -->
         <input

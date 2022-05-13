@@ -35,25 +35,22 @@ console.log(blogPreviewInnerHTML.value)
 
     <form @submit.prevent="">
         <h2>
-        <label for=markdown_input>Title Text</label>
+        <label for='markdown_input'>Title Text: <input id='markdown_input' v-model='titleText'></label>
         </h2>
-        <textarea
-            id=markdown_input
-            v-model=titleText>
-        </textarea>
-    <div class=content-row>
-        <div class="flex-child-fill mid-margin">
+
+    <div class="content-row">
+        <div class="flex-child-fill">
             <!-- Text area to enter stuff-->
             <h2>
-            <label for=markdown_input>Post Text</label>
+            <label for='markdown_input'>Post Text</label>
             </h2>
             <textarea
-                id=markdown_input
-                class=flex-child-fill
-                v-model=contentText>
+                id='markdown_input'
+                class='flex-child-fill'
+                v-model='contentText'>
             </textarea>
         </div>
-        <div class="flex-child-fill mid-margin">
+        <div class="flex-child-fill">
             <h2>
             Post Preview
             </h2>
@@ -66,3 +63,11 @@ console.log(blogPreviewInnerHTML.value)
 </div>
 
 </template>
+
+<style scoped>
+.markdown{
+    text-align: left;
+    
+
+}
+</style>

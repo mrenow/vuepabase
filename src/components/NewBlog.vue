@@ -27,6 +27,16 @@ const blogPreviewInnerHTML = computed(()=>{
 
 console.log(blogPreviewInnerHTML.value)
 
+
+async function getID (row, col) {
+  const {data, error} = await supabase
+    .rpc('gen_id', {row1: row, col: col})
+  console.log(data)
+  console.log(error)
+}
+
+getID(1, 2)
+
 </script>
 
 <template>

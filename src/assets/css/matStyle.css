@@ -1,4 +1,5 @@
 
+
 body{
     color:black;
     margin: 0;
@@ -19,26 +20,40 @@ body{
     display:block;
     margin: auto;
     max-width: 1200px;
-    height: 100vh
+    height: 100vh;
 }
+
 
 .content-row{
     display: flex;
     flex-direction: row;
+    justify-content:stretch;
+    gap: 10px;
 }
+.content-row > div{
+    flex-grow: 1;
+}
+
 .content-column{
+    height: 100%;
     padding: 5px;
     display: flex;
     flex-direction: column;
+}
+.vert-spacer{
+    min-width: 10px;
+    flex: 0.1;
+}
+.flex-child-fill{
+    width: 100%;
 }
 .content-block{
     flex: 2 1 auto;
     padding: 10px;
     margin: 10px 10px 0px 10px;
 }
-.content-block-child{
-    position: absolute;
-}
+
+
 .content-block-background{
     left: 0;
     top: 0;
@@ -68,13 +83,6 @@ body{
 .mid-margin{
     margin: 40px;
 }
-
-h1{
-    text-align: center;
-}
-.flex-child-fill{
-    width: 100%;
-}
 .img-decal{
     position: absolute;
     object-fit: none;
@@ -101,6 +109,12 @@ h1{
     margin: 45px 0 0 0;
 }
 
+
+
+
+h1{
+    text-align: center;
+}
 textarea{
     box-sizing: border-box;
 }

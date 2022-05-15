@@ -5,13 +5,36 @@ import HelloWorld from './components/HelloWorld.vue'
 import Auth from './components/Auth.vue'
 import NewBlog from './components/NewBlog.vue'
 
+import { ref, computed } from 'vue'
+
+const routesMap = {
+  '': HelloWorld,
+  'auth': Auth,
+  'new-blog': NewBlog
+}
+
+
+const currentPath = ref(window.location.pathname)
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.pathname
+})
+
+console.log(currentPath.value.slice(1))
+
+const currentView = computed(() => {
+  return routesMap[currentPath.value.slice(1)]
+})
+
 </script>
 
 <template>
   <div class=content-area>
+  <a href="/">Home</a> 
+  <a href="/auth">About</a> 
+  <a href="/new-blog">Broken Link</a>
   <!--HelloWorld msg="Hello Vue 3 + Vite" /-->
-  <Auth/>
-  <NewBlog/>
+  <component :is='currentView'/>
   </div>
 </template>
 

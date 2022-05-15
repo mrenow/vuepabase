@@ -18,6 +18,7 @@ async function submitPost(){
 
 
 // Computed properties 
+// Compute Markdown Preview
 const blogPreviewInnerHTML = computed(()=>{
     const innerHTML = marked.parse(contentText.value)
     console.log(innerHTML)
@@ -49,7 +50,7 @@ getID(1, 2)
         </h2>
 
     <div class="content-row">
-        <div class="flex-child-fill">
+        <div>
             <!-- Text area to enter stuff-->
             <h2>
             <label for='markdown_input'>Post Text</label>
@@ -60,7 +61,9 @@ getID(1, 2)
                 v-model='contentText'>
             </textarea>
         </div>
-        <div class="flex-child-fill">
+
+        <!-- <div class='vert-spacer'></div> -->
+        <div>
             <h2>
             Post Preview
             </h2>

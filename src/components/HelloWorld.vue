@@ -36,6 +36,11 @@ const getDatabase = async () => {
   databaseLoaded.value = true
 }
 
+function yell (){
+  console.log('YELLING')
+
+}
+
 onMounted(getDatabase)
 
 </script>
@@ -45,7 +50,7 @@ onMounted(getDatabase)
   Enter some text to enter the database below:
   {{msg}}
   </p>
-  <form @submit.prevent="">
+  <form @submit.prevent="" class='flex-grow'>
     <p>
     <label for="data_text">Data</label>
     </p>
@@ -70,7 +75,7 @@ onMounted(getDatabase)
     <p>
       Display database contents:
     </p>
-    <button @click="getDatabase">
+    <button @click="yell" class='triangle-button'>
       Click me
     </button>
     <table v-if="databaseLoaded">
@@ -102,9 +107,21 @@ onMounted(getDatabase)
 a {
   color: #42b983;
 }
+button.round-button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
 table{
   
 
+}
+button.triangle-button {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 90px 100vw 0 0;
+  border-color: yellow transparent  ttransparentransparent;
 }
 </style>
 

@@ -17,7 +17,8 @@ body{
 
 /* Main Region in which content is situated, fixed width*/
 .content-area{
-    display:block;
+    display:flex;
+    flex-direction: column;
     margin: auto;
     max-width: 1200px;
     height: 100vh;
@@ -39,7 +40,12 @@ body{
     padding: 5px;
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
+.expand-contents{
+    flex-grow: 1;
+}
+
 .vert-spacer{
     min-width: 10px;
     flex: 0.1;
@@ -117,4 +123,13 @@ h1{
 }
 textarea{
     box-sizing: border-box;
+    flex-grow: 1;
+    min-width: 0;
+    resize: none;
+}
+
+
+#blog-preview{
+    overflow-y: scroll;
+    word-wrap: break-word;
 }

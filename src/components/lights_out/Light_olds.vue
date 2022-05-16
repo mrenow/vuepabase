@@ -2,19 +2,21 @@
 import { ref, onMounted } from 'vue'
 import { supabase } from '../supabase'
 
-const props = defineProps({
-  msg: String
-})
-console.log(props.msg)
+// const props = defineProps({
+//   msg: String
+// })
+// console.log(props.msg)
 
 // const count = ref(0)
 // const text = ref("")
 // const databaseContents = ref([])
 // const databaseLoaded = ref(false)
 
-// count.value=100
+const lights_string = ref("")
 
-const boardData = ref([])
+async function pressLight(row, col) {
+    
+}
 
 // const submitDatabase = async (attrib) => {
 //   const submitText = text.value
@@ -33,41 +35,12 @@ const boardData = ref([])
 //   const {data, error} = await supabase
 //     .from("rubbish_table")
 //     .select("*")
-//   console.log(data)
+//   console.log(data)  
 //   databaseContents.value = data
 //   databaseLoaded.value = true
 // }
 
-
-async function flipLight (row, col) {
-  await supabase
-    .rpc('flip_state', {row: row, col: col})
-}
-
-async function getLights () {
-  const {data, error} = await supabase
-    .from("states")
-    .select("*")
-  console.log(data)
-  boardData.value = data
-}
-
-
-
-async function getID (row, col) {
-  const {data, error} = await supabase
-    .rpc('get_id', {row: row, col: col})
-  console.log(data)
-}
-
-getID(1, 2)
-
-
-
-// onMounted(getDatabase)
-
-onMounted(getLights)
-
+onMounted(getDatabase)
 
 </script>
 
@@ -134,6 +107,7 @@ a {
   color: #42b983;
 }
 table{
+  
 
 }
 </style>

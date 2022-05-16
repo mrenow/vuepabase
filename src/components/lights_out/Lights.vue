@@ -1,22 +1,21 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { supabase } from '../supabase'
+import { supabase } from '../../supabase'
 
-// const props = defineProps({
-//   msg: String
-// })
-// console.log(props.msg)
+const props = defineProps({
+  msg: String
+})
+console.log(props.msg)
 
 // const count = ref(0)
 // const text = ref("")
 // const databaseContents = ref([])
 // const databaseLoaded = ref(false)
 
-const lights_string = ref("")
+// count.value=100
 
-async function pressLight(row, col) {
-    
-}
+const boardLoaded = ref(false)
+const boardData = ref(new Map())
 
 // const submitDatabase = async (attrib) => {
 //   const submitText = text.value
@@ -35,12 +34,46 @@ async function pressLight(row, col) {
 //   const {data, error} = await supabase
 //     .from("rubbish_table")
 //     .select("*")
-//   console.log(data)  
+//   console.log(data)
 //   databaseContents.value = data
 //   databaseLoaded.value = true
 // }
 
-onMounted(getDatabase)
+
+async function flipLight (row, col) {
+  await supabase
+    .rpc('flip_state', {row: row, col: col})
+}
+
+async function getLights () {
+  const {data, error} = await supabase
+    .from("states")
+    .select("*")
+  console.log(data)
+  const lightmap = new Map();
+  for (row in data) {
+    lightmap.set({row: row.row, col: row.col}, row.state)
+  }
+  boardData.value = data
+  boardLoaded.value = true
+}
+
+
+
+async function getID (row, col) {
+  const {data, error} = await supabase
+    .rpc('get_id', {row: row, col: col})
+  console.log(data)
+}
+
+getID(1, 2)
+
+
+
+// onMounted(getDatabase)
+
+onMounted(getLights)
+
 
 </script>
 
@@ -74,10 +107,16 @@ onMounted(getDatabase)
     <p>
       Display database contents:
     </p>
+    <v-btn
+      icon
+      color="pink"
+    >
+      <v-icon>mdi-heart</v-icon>
+    </v-btn>
     <button @click="getDatabase">
       Click me
     </button>
-    <table v-if="databaseLoaded">
+    <table v-if="boardLoaded">
       <thead>
         <tr>
           <th>id</th>
@@ -88,7 +127,7 @@ onMounted(getDatabase)
         </tr>
       </thead>
       <tbody>
-        <tr v-for="row in databaseContents" :key="row.id">
+        <tr v-for="row in boardData" :key="row.id">
           <th>{{row.id}}</th>
           <th>{{row.created_at}}</th>
           <th>{{row.data1}}</th>
@@ -107,7 +146,6 @@ a {
   color: #42b983;
 }
 table{
-  
 
 }
 </style>

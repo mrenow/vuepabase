@@ -4,13 +4,15 @@
 import HelloWorld from './components/HelloWorld.vue'
 import Auth from './components/Auth.vue'
 import NewBlog from './components/NewBlog.vue'
+import Lights from './components/lights_out/Lights.vue'
 
 import { ref, computed } from 'vue'
 
 const routesMap = {
   '': HelloWorld,
   'auth': Auth,
-  'new-blog': NewBlog
+  'new-blog': NewBlog,
+  'lights': Lights
 }
 
 

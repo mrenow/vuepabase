@@ -5,6 +5,7 @@ import { supabase } from '../supabase'
 
 const contentText = ref("")
 const titleText = ref("")
+const allTitles = ref([])
 
 function printText(){console.log(contentText.value)}
 async function submitPost(){
@@ -38,54 +39,62 @@ const blogPreviewInnerHTML = computed(()=>{
 console.log(blogPreviewInnerHTML.value)
 
 
-async function getID (row, col) {
-  const {data, error} = await supabase
-    .rpc('gen_id', {row1: row, col: col})
-  console.log(data)
-  console.log(error)
+async function updateTitles (row, col) {
+    const {data, error} = await supabase
+        .from('posts')
+        .select('title')
+    allTitles.value = data
 }
 
-getID(1, 2)
+onMounted(updateTitles)
 
 </script>
 
 <template>
-<form @submit.prevent="" style='flex-grow:1'>
+<form @submit.prevent="" style="display:flex">
     
     <div class="content-column">
 
         <h2>
-        <label for='markdown_input'>Title Text: <input id='markdown_input' v-model='titleText'></label>
-
+        <label for='markdown-input'>
+            Title Text: 
+        </label>
+        <input id='markdown-input' type='search' v-model='titleText' list='title-list'>
+        <datalist id='title-list' :v-for="title on allTitles">
+            <option value="Chocolate">
+            <option value="Coconut">
+            <option value="Mint">
+            <option value="Strawberry">
+            <option value="Vanilla">
+        </datalist>
         <input type='submit' value="Load" @click='loadPost'>
         </h2>
 
-    <div class="content-row" style='flex:1 0'>
-        <div class="content-column" style='height:100%;flex:1 0 0'>
+    <div class="content-row">
+        <div class="content-column">
 
             <!-- Text area to enter stuff-->
             <h2>
-            <label for='markdown_input'>Post Text</label>
+            <label for='markdown-input'>Post Text</label>
             </h2>
             <textarea
-                id='markdown_input'
+                id='markdown-input'
                 class='flex-child-fill'
                 v-model='contentText'>
             </textarea>
         </div>
 
         <!-- <div class='vert-spacer'></div> -->
-        <div class="content-column" style='flex:1 0 0;position:relative'>
-            <div>
-                <h2>
-                Post Preview
-                </h2>
-                <div id=blog-preview v-html='blogPreviewInnerHTML'></div>
-            </div>
+        <div class="content-column">
+            <h2>
+            Post Preview
+            </h2>
+            <div id=blog-preview class='content-column' v-html='blogPreviewInnerHTML'></div>
         </div>
     </div>
+    <span>
     <input type='submit' value="Save" @click='submitPost'>
-
+    </span>
     </div>
 
 </form>

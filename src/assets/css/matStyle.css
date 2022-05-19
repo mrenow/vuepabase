@@ -5,6 +5,13 @@ body{
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
     padding: 10px;
+    height: 100vh;
+    box-sizing: border-box;
+}
+#app{
+    height:100%;
+    display: flex;
+    flex-direction: column;
 }
 .fullscreen{
     padding: 0px;
@@ -21,7 +28,7 @@ body{
     flex-direction: column;
     margin: auto;
     max-width: 1200px;
-    height: 100vh;
+    width: 100%;
 }
 
 .content-row{
@@ -67,6 +74,19 @@ body{
     float: right;
     margin: 20px;
 }
+
+.content-bar{
+    display:flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    flex: 0 1 auto;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    background-color: #16b3ed;
+}
 .page-nav{
     display: flex;
     flex-direction: row;
@@ -76,6 +96,21 @@ body{
 .square{
     aspect-ratio: 1;
 }
+
+.circle{
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border-color: transparent;
+}
+input[type=submit].circle:hover{
+    background-color: #E0E0E0;
+}
+
+input[type=submit].circle:hover{
+    background-color: #E0E0E0;
+}
+
+
 .mid-margin{
     margin: 40px;
 }

@@ -11,7 +11,7 @@ import { ref, computed } from 'vue'
 const routesMap = {
   '': HelloWorld,
   'auth': Auth,
-  'new-blog': NewBlog,
+  'blogs': NewBlog,
   'lights': Lights
 }
 
@@ -32,9 +32,11 @@ const currentView = computed(() => {
 
 <template>
   <div class=content-area>
-  <a href="/">Home</a> 
-  <a href="/auth">About</a> 
-  <a href="/new-blog">Broken Link</a>
+  <nav class='content-bar'>
+    <a href="/">Home</a> 
+    <a href="/public-place">Public Place</a> 
+    <a href="/blogs">Blogs</a>
+  </nav>
   <!--HelloWorld msg="Hello Vue 3 + Vite" /-->
   <component :is='currentView'/>
   </div>
